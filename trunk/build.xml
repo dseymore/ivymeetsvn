@@ -9,7 +9,7 @@
 	<property name="version" value="0.0.1" />
 
 	<target name="clean">
-		<delete dir="${build.dir}" />
+		<delete dir="${basedir}/scratch" />
 	</target>
 
 	<!-- checks for ivy -->
