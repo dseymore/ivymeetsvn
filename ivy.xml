@@ -1,0 +1,11 @@
+<ivy-module version="1.0">
+	<info organisation="ivymeetsvn" module="ivymeetsvn" />
+	<configurations>
+		<conf name="default" description="Honest runtime dependencies" visibility="public" />
+		<conf name="test" description="test dependencies" visibility="private" extends="default" />
+	</configurations>
+	<dependencies>
+		<dependency org="jayasoft" name="ivy" rev="1.4.1" conf="default" />
+		<dependency org="tmate" name="svnkit" rev="1.1.7" conf="default" />
+	</dependencies>
+</ivy-module>
