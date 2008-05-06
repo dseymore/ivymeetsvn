@@ -1,0 +1,62 @@
+<project name="ivymeetsvn" default="jar" xmlns:ivy="antlib:fr.jayasoft.ivy.ant">
+
+	<property name="ivy.conf.dir" value="${basedir}" />
+	<property name="project.name" value="${ant.project.name}" />
+
+	<property name="classes.build.dir" value="${basedir}/scratch/classes" />
+	<property name="src.dir" value="${basedir}/src/java" />
+	<property name="artifacts.build.dir" value="${basedir}/scratch/dist/" />
+	<property name="version" value="0.0.1" />
+
+	<target name="clean">
+		<delete dir="${build.dir}" />
+	</target>
+
+	<!-- checks for ivy -->
+	<target name="-check-for-ivy">
+		<available property="have.ivy" resource="fr/jayasoft/ivy/ant/antlib.xml" />
+	</target>
+
+	<!-- create ivy taskdef if ivy is available -->
+	<target name="-ivy-define" depends="-check-for-ivy" unless="have.ivy">
+		<taskdef resource="fr/jayasoft/ivy/ant/antlib.xml" uri="antlib:fr.jayasoft.ivy.ant">
+			<classpath>
+				<fileset dir="${basedir}/tools/ivy-1.4.1/">
+					<include name="ivy*.jar" />
+					<include name="lib/*.jar" />
+				</fileset>
+			</classpath>
+		</taskdef>
+
+		<ivy:configure file="${basedir}/ivyconf.xml" />
+	</target>
+
+	<target name="init" depends="-ivy-define">
+		<mkdir dir="${classes.build.dir}" />
+		<mkdir dir="${artifacts.build.dir}" />
+		<ivy:resolve file="${ivy.conf.dir}/ivy.xml" conf="*" />
+	</target>
+
+
+	<target name="compile" depends="init">
+		<ivy:cachepath id="ivy.classpath" conf="default" />
+		<javac srcdir="${src.dir}" destdir="${classes.build.dir}" classpathref="ivy.classpath" source="1.5" target="1.5" debug="on" />
+	</target>
+
+	<target name="-getVersionNumber">
+		<!-- get the version number and generate the release ivy file -->
+		<input addProperty="deliver.version.number">Deliver Version Number (X.X.X): </input>
+	</target>
+
+	<target name="jar" depends="compile,-getVersionNumber">
+		<copy todir="${classes.build.dir}">
+			<fileset dir="${src.dir}">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+		<jar destfile="${artifacts.build.dir}/${project.name}-${deliver.version.number}.jar">
+			<fileset dir="${classes.build.dir}" />
+		</jar>
+	</target>
+
+</project>

@@ -1,0 +1,10 @@
+<ivyconf>
+	<properties file="${ivy.conf.dir}/ivy.properties" />
+	<conf defaultResolver="filesystem" />
+	<resolvers>
+		<filesystem name="filesystem">
+			<ivy pattern="${ivy.conf.dir}/modules/[module]-[revision].xml"/>
+			<artifact pattern="C:/Users/seymore/workspace/ivy+svn vendor/[organisation]/[module]/[type]s/[artifact]-[revision].[ext]"/>
+		</filesystem>
+	</resolvers>
+</ivyconf>
