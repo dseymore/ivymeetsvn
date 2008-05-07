@@ -2,10 +2,10 @@
 #How do I use ivymeetsvn?
 
 = What you'll need =
-* Apache Ant 1.7 [http://ant.apache.org/ Ant Home]
-* (Apache) Ivy 1.4.1 (wasn't released under apache) [http://ant.apache.org/ivy/ Ivy Home]
-* IvyMeetSvn :)
-* A Subversion repository accessible via WebDav
+  * Apache Ant 1.7 [http://ant.apache.org/ Ant Home]
+  * (Apache) Ivy 1.4.1 (wasn't released under apache) [http://ant.apache.org/ivy/ Ivy Home]
+  * IvyMeetSvn :)
+  * A Subversion repository accessible via WebDav
  
 = The IvyConf =
 
