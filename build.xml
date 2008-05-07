@@ -62,6 +62,7 @@
 	        <rule pattern="org.tmatesoft.**" result="org.ivymeetsvn.@1"/>
 	    	<rule pattern="org.tigris.**" result="org.ivymeetsvn.@1"/>
 	        <rule pattern="de.regnis.**" result="org.ivymeetsvn.@1"/>
+	    	<rule pattern="org.apache.commons.**" result="org.ivymeetsvn.@1"/>
 	    </jarjar>
 	</target>
 
