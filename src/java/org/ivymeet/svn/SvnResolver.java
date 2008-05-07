@@ -1,10 +1,17 @@
 package org.ivymeet.svn;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import org.apache.commons.codec.binary.Base64;
 import org.tmatesoft.svn.core.internal.io.dav.DAVRepositoryFactory;
 
 import fr.jayasoft.ivy.resolver.RepositoryResolver;
@@ -78,12 +85,34 @@ public class SvnResolver extends RepositoryResolver {
 					throw new RuntimeException("Cannot ask for input.");
 				}
 				String alltogether = username + ":" + password;
-				
-				
-				
+				try{
+					
+					FileOutputStream fos = new FileOutputStream(localSecurity);
+					byte[] data = Base64.encodeBase64(alltogether.getBytes());
+					fos.write(data);
+					fos.flush();
+					fos.close();
+				}catch(IOException e){
+					throw new RuntimeException("Unable to write encoded security file.");
+				}
 			}
-			
-			
+			//read the file
+			try{
+				FileInputStream fis = new FileInputStream(localSecurity);
+				long bytes = localSecurity.length();
+				int arraySize = new Long(bytes).intValue();
+				byte[] data = new byte[arraySize];
+				fis.read(data);
+				fis.close();
+				String allString = new String(Base64.decodeBase64(data));
+				setUsername(allString.substring(0,allString.indexOf(":")));
+				setPassword(allString.substring(allString.indexOf(":") + 1));
+			}catch(FileNotFoundException fnfe){
+				//yes it is there.
+				throw new RuntimeException("something is horribly wrong.. cant read an existing security file.");
+			}catch(IOException ioe){
+				throw new RuntimeException("Unable to read from security file");
+			}
 		}
 	}
 	
