@@ -2,6 +2,8 @@ package org.ivymeet.svn;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -169,7 +171,23 @@ public class SvnRepository extends AbstractRepository {
 
 	@Override
 	public List list(String parent) throws IOException {
-		// TODO Auto-generated method stub
-		return null;
+		Message.verbose("Attempting to list files.");
+		File tempArea = new File(System.getProperty("java.io.tmpdir") + "/ivycommit-" + new Date().getTime());
+		List<String> itemsfound = new ArrayList<String>();
+		try{
+			SVNURL baseUrl = SVNURL.parseURIDecoded(parent);
+			//recursively download.. so we can check if we are overwriting.
+			//check it out.
+			clientManager.getUpdateClient().doCheckout(baseUrl, tempArea, SVNRevision.HEAD, SVNRevision.HEAD, true);
+			String[] files = tempArea.list();
+			for(String filename : files){
+				itemsfound.add(parent + "/" + filename);
+			}
+			tempArea.delete();
+		}catch(Exception e){
+			Message.debug("Unable to list files in: " + parent.toString());
+			return Collections.EMPTY_LIST;
+		}
+		return itemsfound;
 	}
 }
