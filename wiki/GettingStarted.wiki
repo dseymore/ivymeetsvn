@@ -32,6 +32,12 @@ How do I use ivymeetsvn?
 </ivyconf>
 }}}
 
+You can also use the new 'secure' feature if you dont want to publish your svn login in your ivyconf.xml. The idea being you might have multiple svns you want to use, so, it takes a name to keep login information stored seperately. It stores it via base64 in your home directory.. so, not really that safe, but, enough if you keep a tight ship. 
+
+{{{
+  <svn name="something" secure="sommethingelse">
+}}}
+
 = The Build.xml =
 {{{
         <target name="-check-for-ivy">
@@ -52,9 +58,7 @@ How do I use ivymeetsvn?
                 <ivy:configure file="${basedir}/ivyconf.xml" />
         </target>
 
-        <!--
-       Runs the ivy resolver
-    -->
+        <!-- Runs the ivy resolver -->
         <target name="resolve.dependencies" depends="-ivy-define">
                 <ivy:resolve conf="default" />
                 <ivy:cachefileset setid="ivy.cachefileset" conf="default" />
@@ -63,7 +67,7 @@ How do I use ivymeetsvn?
                 <ivy:report todir="${local.scratch.path}" />
         </target>
 
- <target name="-getVersionNumber">
+        <target name="-getVersionNumber"> 
                 <!-- get the version number and generate the release ivy file -->
                 <input addProperty="deliver.version.number">Deliver Version Number : </input>
         </target>
