@@ -35,6 +35,7 @@
 		<mkdir dir="${classes.build.dir}" />
 		<mkdir dir="${artifacts.build.dir}" />
 		<ivy:resolve file="${ivy.conf.dir}/ivy.xml" conf="*" />
+		<ivy:artifactproperty name="[module].[artifact]" value="${user.home}${file.separator}.ivy${file.separator}cache${file.separator}[organization]${file.separator}[module]${file.separator}[type]s${file.separator}[artifact]-[revision].[ext]"/>
 	</target>
 
 
@@ -55,10 +56,10 @@
 				<exclude name="**/*.java" />
 			</fileset>
 		</copy>
+		<echo message="${svnkit.svnkit}"/>
 	    <jarjar jarfile="${artifacts.build.dir}/${project.name}-${deliver.version.number}.jar">
 	    	<fileset dir="${classes.build.dir}" />
-	    	<!-- TODO - pull this out of ivy's classpath -->
-	        <zipfileset src="${basedir}/tools/thirdparty/org.tmate/svnkit/jars/svnkit-1.1.7.jar"/>
+	        <zipfileset src="${svnkit.svnkit}"/>
 	        <rule pattern="org.tmatesoft.**" result="org.ivymeetsvn.@1"/>
 	    	<rule pattern="org.tigris.**" result="org.ivymeetsvn.@1"/>
 	        <rule pattern="de.regnis.**" result="org.ivymeetsvn.@1"/>
