@@ -18,7 +18,7 @@ import fr.jayasoft.ivy.resolver.RepositoryResolver;
 import fr.jayasoft.ivy.util.Message;
 
 /**
- * 
+ * This is a test test test test
  * @author dseymore d.seymore@gmail.com
  */
 public class SvnResolver extends RepositoryResolver {
