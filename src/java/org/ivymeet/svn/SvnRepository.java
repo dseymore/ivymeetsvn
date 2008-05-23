@@ -70,7 +70,7 @@ public class SvnRepository extends AbstractRepository {
 				SVNURL baseUrl = SVNURL.parseURIDecoded(buf.toString());
 				//recursively download.. so we can check if we are overwriting.
 				//check it out.
-				clientManager.getUpdateClient().doCheckout(baseUrl, tempArea, SVNRevision.HEAD, SVNRevision.HEAD, true);
+				clientManager.getUpdateClient().doCheckout(baseUrl, tempArea, SVNRevision.HEAD, SVNRevision.HEAD, false);
 				checkedOut = true;
 			}catch(Exception e){
 				Message.debug("Unable to checkout: " + buf.toString() + " this is ok if this is a new org/module/revision");
@@ -178,7 +178,7 @@ public class SvnRepository extends AbstractRepository {
 			SVNURL baseUrl = SVNURL.parseURIDecoded(parent);
 			//recursively download.. so we can check if we are overwriting.
 			//check it out.
-			clientManager.getUpdateClient().doCheckout(baseUrl, tempArea, SVNRevision.HEAD, SVNRevision.HEAD, true);
+			clientManager.getUpdateClient().doCheckout(baseUrl, tempArea, SVNRevision.HEAD, SVNRevision.HEAD, false);
 			String[] files = tempArea.list();
 			for(String filename : files){
 				itemsfound.add(parent + "/" + filename);
