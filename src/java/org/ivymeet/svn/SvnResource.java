@@ -17,6 +17,11 @@ import org.tmatesoft.svn.core.wc.SVNRevision;
 import fr.jayasoft.ivy.repository.Resource;
 import fr.jayasoft.ivy.util.Message;
 
+/**
+ * Modle for the SVN interaction. 
+ * @author seymore
+ *
+ */
 public class SvnResource implements Resource {
 	private String source;
 	private SVNClientManager client;

@@ -25,12 +25,23 @@ import fr.jayasoft.ivy.util.CopyProgressListener;
 import fr.jayasoft.ivy.util.FileUtil;
 import fr.jayasoft.ivy.util.Message;
 
+/**
+ * Extension of the AbstractRepository, this implementations the repository interaction 'get' and 'put' to allow Ivy to read and write to SVN
+ * 
+ * @author seymore
+ *
+ */
 public class SvnRepository extends AbstractRepository {
 
 	private ISVNOptions options;
 	private ISVNAuthenticationManager authManager;
 	private SVNClientManager clientManager;
 
+	/**
+	 * 
+	 * @param username
+	 * @param password
+	 */
 	public SvnRepository(String username, String password) {
 		// get our connection/svn client ready
 		options = new DefaultSVNOptions();
@@ -136,6 +147,9 @@ public class SvnRepository extends AbstractRepository {
 		tempArea.delete();
 	}
 
+	/**
+	 * retrieves a file from SVN
+	 */
 	@Override
 	public void get(String source, File destination) throws IOException {
 		Message.info("Getting resource " + source);
@@ -169,6 +183,9 @@ public class SvnRepository extends AbstractRepository {
 		return new SvnResource(clientManager,source);
 	}
 
+	/**
+	 * Lists all the files in a path.. to handle retrieving regex style versions.
+	 */
 	@Override
 	public List list(String parent) throws IOException {
 		Message.verbose("Attempting to list files.");
