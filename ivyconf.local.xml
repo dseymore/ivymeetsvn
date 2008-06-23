@@ -1,0 +1,9 @@
+<ivysettings>
+	<conf defaultResolver="filesystem" />
+	<resolvers>
+		<filesystem name="filesystem">
+			<ivy pattern="/opt/workspace/IvyMeetSvn/tools/thirdparty/[organisation]/[module]/[revision]/ivy-[revision].xml"/>
+			<artifact pattern="/opt/workspace/IvyMeetSvn/tools/thirdparty/[organisation]/[module]/[revision]/[type]s/[artifact]-[revision].[ext]"/>
+		</filesystem>
+	</resolvers>
+</ivysettings>

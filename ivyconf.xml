@@ -2,8 +2,8 @@
 	<conf defaultResolver="filesystem" />
 	<resolvers>
 		<filesystem name="filesystem">
-			<ivy pattern="${basedir}/tools/thirdparty/[organisation]/[module]/ivy-[revision].xml"/>
-			<artifact pattern="${basedir}/tools/thirdparty/[organisation]/[module]/[type]s/[artifact]-[revision].[ext]"/>
+			<ivy pattern="${basedir}/tools/thirdparty/[organisation]/[module]/[revision]/ivy-[revision].xml"/>
+			<artifact pattern="${basedir}/tools/thirdparty/[organisation]/[module]/[revision]/[type]s/[artifact]-[revision].[ext]"/>
 		</filesystem>
 	</resolvers>
 </ivysettings>
