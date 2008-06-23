@@ -1,13 +1,10 @@
 package org.ivymeet.svn;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -18,7 +15,8 @@ import fr.jayasoft.ivy.resolver.RepositoryResolver;
 import fr.jayasoft.ivy.util.Message;
 
 /**
- * This is a test test test test
+ * This is the resolver implementaiton, that wires up the repository to the ivyconf configuration. 
+ * 
  * @author dseymore d.seymore@gmail.com
  */
 public class SvnResolver extends RepositoryResolver {
@@ -58,6 +56,10 @@ public class SvnResolver extends RepositoryResolver {
 		return secure;
 	}
 
+	/**
+	 * Method for handling storing the hashed password on the users filesystem rather than asking EVERY TIME a get or set is called. 
+	 * @param secure
+	 */
 	public void setSecure(String secure) {
 		this.secure = secure;
 		if (secure != null && !"".equalsIgnoreCase(secure)){
