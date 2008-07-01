@@ -1,4 +1,7 @@
 #labels Featured
+= Release 0.0.5 =
+  * Properly deleting the .ivycommit stuff in the /tmp/ space. nasty bug. 
+
 = Release 0.0.4 =
   * Now supports repository listing, which solves the 0 cache latest.* problem.
     * [http://code.google.com/p/ivymeetsvn/issues/detail?id=4 Ticket#4]
