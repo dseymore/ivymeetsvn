@@ -144,7 +144,7 @@ public class SvnRepository extends AbstractRepository {
 				throw new IOException("Unable to add file to svn repository");
 			}
 		}
-		tempArea.delete();
+		FileUtil.forceDelete(tempArea);
 	}
 
 	/**
